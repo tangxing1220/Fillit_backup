@@ -24,10 +24,12 @@ t_square		*create_square(size_t size);
 void			print_str_square(char	**square);
 void			free_square(t_square **square);
 void			update_square(t_square **square, char **rows);
-
+/*end of original */
 char			**create_square_tang(int size);
+//void			print_str_square_tang(char	**board);
+//void			free_square_tang(char **board, int size );
+//void			update_square_tang(char **board, char **rows, int size);
 #endif
-/* end of original */
  
  	
 

@@ -41,4 +41,8 @@ int				check_tetrimino_fits(t_tetri *tetrimino, t_square *square,
 									t_point *point);
 t_tetri			*create_tetrimino(const char *raw_shape, const char fill);
 int				lstlen_tetri(t_list **tetri);
+int				check_tetrimino_fits_tang(t_tetri *tetrimino, char **board, int size,
+									t_point *point);
+
+
 #endif

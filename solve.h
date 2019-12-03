@@ -20,5 +20,6 @@ void	print_usage_msg(const char *prog_name);
 int		solve(const char *filename);
 int		get_next_point(t_point **point, char **square);
 int		solve_a_square(t_square *square, t_list **block);
-
+int		solve_a_square_tang(char **board, int size, t_list **block, t_point point);
+int		get_next_point_tang(t_point **point, char **square, int size);
 #endif

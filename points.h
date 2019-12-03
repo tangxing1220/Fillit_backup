@@ -19,6 +19,7 @@ typedef struct	s_point
 	int			x;
 	int			y;
 }				t_point;
+t_point			*create_point_tang(int len);
 t_point			*create_point(int len);
 t_point			*create_point_fromxy(int x, int y);
 void			free_point(t_point **point);
