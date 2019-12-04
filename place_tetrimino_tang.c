@@ -38,7 +38,7 @@ int		tetrimino_xshift_tang(t_tetri *tetri)
 ** attempted coordinates are outside the board.
 */
 
-int		check_tetrimino_max_tang(t_tetri *tetrimino, char  **board, int size,
+int		check_tetrimino_max_tang(t_tetri *tetrimino, int size,
 							t_point *point)
 {
 	if ((point->y + tetrimino->height <= size) &&
@@ -60,11 +60,10 @@ int		check_tetrimino_fits_tang(t_tetri *tetrimino, char **board, int size,
 	int		x;
 	int		y;
 	char	**tetri_shape;
-	char	**board;
 
 	tetri_shape = tetrimino->shape;
 //	str_square = square->rows;
-	if (check_tetrimino_max_tang(tetrimino, board, size, point) != 1)
+	if (check_tetrimino_max_tang(tetrimino, size, point) != 1)
 		return (0);
 	y = 0;
 	while (tetri_shape[y] != NULL)
@@ -88,7 +87,7 @@ int		check_tetrimino_fits_tang(t_tetri *tetrimino, char **board, int size,
 ** aligning the top left corner of the tetrimino with the point specified.
 ** The tetrimino is drawn in the character specified (eg. AAAA).
 */
-
+/*
 void	place_a_tetrimino(t_tetri *tetrimino, t_square *square,
 							t_point *point)
 {
@@ -117,7 +116,7 @@ void	place_a_tetrimino(t_tetri *tetrimino, t_square *square,
 	tetrimino->start->x = (point->x) - tetrimino_xshift(tetrimino);
 	tetrimino->start->y = point->y;
 }
-
+*/
 /*
 ** The function remove_a_tetrimino() removes a tetrimino from the board
 */

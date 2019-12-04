@@ -18,7 +18,7 @@ void ft_putstrarr(char **strarr)
 	int j;
 
 	i = 0;
-	while (strarr[i] != '\0')
+	while (strarr[i] != NULL)
 	{
 		j = 0;
 		while(strarr[i][j] != '\0')
