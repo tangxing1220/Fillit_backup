@@ -22,4 +22,5 @@ int		get_next_point(t_point **point, char **square);
 int		solve_a_square(t_square *square, t_list **block);
 int		solve_a_square_tang(char **board, int size, t_list **block, t_point point);
 int		get_next_point_tang(t_point **point, char **square, int size);
+void			ft_putstrarr_tang(char **board, int board_size);
 #endif

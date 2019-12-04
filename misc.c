@@ -12,18 +12,18 @@
 
 #include <unistd.h>
 
-void ft_putstrarr(char **strarr)
+void ft_putstrarr_tang(char **board, int board_size)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (strarr[i] != NULL)
+	while (i < board_size)
 	{
 		j = 0;
-		while(strarr[i][j] != '\0')
+		while(j < board_size)
 		{
-			write(1, &strarr[i][j], 1);
+			write(1, &board[i][j], 1);
 			j++;
 		}
 		write(1,"\n", 1);

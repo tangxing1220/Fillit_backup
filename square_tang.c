@@ -105,7 +105,7 @@ char	**create_square_tang(int size)
 		i++;
 	}
 /*	Begin of Debug */
-	ft_putstrarr(board);
+	ft_putstrarr_tang(board, size);
  /*   End of Debug */	
 	return (board);
 }

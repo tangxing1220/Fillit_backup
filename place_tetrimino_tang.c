@@ -13,7 +13,7 @@
 #include "libft.h"
 #include "points.h"
 #include "tetrimino.h"
-#include "square.h"
+#include "square_tang.h"
 
 /*
 ** Check if tetrimino's first characters are empty, and return an amount to
@@ -60,18 +60,20 @@ int		check_tetrimino_fits_tang(t_tetri *tetrimino, char **board, int size,
 	int		x;
 	int		y;
 	char	**tetri_shape;
+	int		xshift;
 
 	tetri_shape = tetrimino->shape;
 //	str_square = square->rows;
 	if (check_tetrimino_max_tang(tetrimino, size, point) != 1)
 		return (0);
 	y = 0;
+	xshift = tetrimino_xshift_tang(tetrimino);
 	while (tetri_shape[y] != NULL)
 	{
 		x = 0;
 		while (tetri_shape[y][x] != '\0')
 		{
-			if (!(board[y + point->y][x - tetrimino_xshift_tang(tetrimino) +
+			if (!(board[y + point->y][x - xshift +
 				point->x] == '.' ||
 				tetri_shape[y][x] == '.'))
 				return (0);
@@ -87,18 +89,18 @@ int		check_tetrimino_fits_tang(t_tetri *tetrimino, char **board, int size,
 ** aligning the top left corner of the tetrimino with the point specified.
 ** The tetrimino is drawn in the character specified (eg. AAAA).
 */
-/*
-void	place_a_tetrimino(t_tetri *tetrimino, t_square *square,
+
+void	place_a_tetrimino_tang(t_tetri *tetrimino, char **board, int size,
 							t_point *point)
 {
 	int		x;
 	int		y;
 	char	**tetri_shape;
-	char	**str_square;
+	int		xshift;
 
 	y = 0;
 	tetri_shape = tetrimino->shape;
-	str_square = square->rows;
+	xshift = tetrimino_xshift_tang(tetrimino);
 	while (tetri_shape[y] != NULL)
 	{
 		x = 0;
@@ -106,31 +108,32 @@ void	place_a_tetrimino(t_tetri *tetrimino, t_square *square,
 		{
 			if (tetri_shape[y][x] != '.')
 			{
-				str_square[y + point->y][x - tetrimino_xshift(tetrimino) +
+				board[y + point->y][x - xshift +
 				point->x] = tetri_shape[y][x];
 			}
 			x++;
 		}
 		y++;
 	}
-	tetrimino->start->x = (point->x) - tetrimino_xshift(tetrimino);
+	tetrimino->start->x = (point->x) - xshift;
 	tetrimino->start->y = point->y;
+	ft_putstrarr_tang(board, size);
 }
-*/
+
 /*
 ** The function remove_a_tetrimino() removes a tetrimino from the board
 */
 
-void	remove_a_tetrimino(t_tetri *tetrimino, t_square *square)
+void	remove_a_tetrimino_tang(t_tetri *tetrimino, char **board, int size)
 {
 	int		x;
 	int		y;
 	char	**tetri_shape;
-	char	**str_square;
+//	char	**str_square;
 
 	y = 0;
 	tetri_shape = tetrimino->shape;
-	str_square = square->rows;
+//	str_square = square->rows;
 	while ((tetrimino->shape)[y] != NULL)
 	{
 		x = 0;
@@ -138,11 +141,12 @@ void	remove_a_tetrimino(t_tetri *tetrimino, t_square *square)
 		{
 			if (tetri_shape[y][x] != '.')
 			{
-				str_square[y + tetrimino->start->y]
+				board[y + tetrimino->start->y]
 				[x + tetrimino->start->x] = '.';
 			}
 			x++;
 		}
 		y++;
 	}
+	ft_putstrarr_tang(board,size);
 }

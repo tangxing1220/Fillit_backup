@@ -26,6 +26,7 @@ void			free_square(t_square **square);
 void			update_square(t_square **square, char **rows);
 
 char			**create_square_tang(int size);
+void			ft_putstrarr_tang(char **board, int board_size);
 #endif
 /* end of original */
  

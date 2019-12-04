@@ -15,6 +15,8 @@
 #include "read.h"
 #include "square.h"
 #include "tetrimino.h"
+#include "square_tang.h"
+
 /*  Begin of Original
 int	get_next_point(t_point **point, char **square)
 {
@@ -42,14 +44,17 @@ int	get_next_point_tang(t_point **point, char **board, int size)
 		return (0);
 	while ((*point)->y < size)
 	{
+		(*point)->x = (*point)->x + 1;
 		while ((*point)->x < size)
-		{
-			(*point)->x = (*point)->x + 1;
+		{		
 			if (board[(*point)->y][(*point)->x] == '.')
 				return (1);
+			else
+				(*point)->x = (*point)->x + 1;
+				
 		}
-		(*point)->x = 0; 
-	    (*point)->y = (*point)->y + 1;
+		(*point)->x = -1;
+		(*point)->y = (*point)->y + 1;
 	}
 	return (0);
 } 
@@ -96,18 +101,18 @@ int	solve_a_square_tang(char **board, int size, t_list **block, t_point *p_start
 		;
 	if (!found)
 		return (0);
-//	place_a_tetrimino((t_tetri *)(*block)->content, square, p_start);
-//	if (!solve_a_square(square, &((*block)->next), create_point(0)))
-//	{
-//		remove_a_tetrimino((t_tetri *)(*block)->content, square);
-//		if (!get_next_point(&p_start, square->rows))
-//		{
-//			p_start->x = 0;
-//			p_start->y = 0;
-//			return (0);
-//		}
-//		return (solve_a_square(square, block, p_start));
-//	}
+	place_a_tetrimino_tang((t_tetri *)(*block)->content, board, size, p_start);
+	if (!solve_a_square_tang(board, size, &((*block)->next), create_point(0)))
+	{
+		remove_a_tetrimino_tang((t_tetri *)(*block)->content, board, size);
+		if (!get_next_point_tang(&p_start, board, size))
+		{
+			p_start->x = 0;
+			p_start->y = 0;
+			return (0);
+		}
+		return (solve_a_square_tang(board, size, block, p_start));
+	}
 	return (1);
 }
 
@@ -151,7 +156,7 @@ int	solve_squares_tang(t_list **tetri_lst)
 
 	tetri_cnt = lstlen_tetri(tetri_lst);
 	board_size = 2;
-	while((board_size * board_size) <= (tetri_cnt * 4))
+	while((board_size * board_size) < (tetri_cnt * 4))
 		{
 			board_size++;
 		}
@@ -163,15 +168,14 @@ int	solve_squares_tang(t_list **tetri_lst)
 			!solve_a_square_tang(board, board_size, &tetri_lst_head, p_start))
 	{
 //		free_square(&square);
-//		if (!(square = create_square(++square_size)))
-//			return (0);
-//		p_start->x = 0;
-//		p_start->y = 0;
+		if (!(board = create_square_tang(++board_size)))
+			return (0);
+		p_start->x = 0;
+		p_start->y = 0;
 	}
-	ft_putstrarr(board);
-//	free_square(&square);
+	ft_putstrarr_tang(board, board_size);
+//	free_square(board;
 //	free(square);
-
 	return (1);
 }
 

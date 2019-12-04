@@ -29,6 +29,7 @@ char			**create_square_tang(int size);
 //void			print_str_square_tang(char	**board);
 //void			free_square_tang(char **board, int size );
 //void			update_square_tang(char **board, char **rows, int size);
+void			ft_putstrarr_tang(char **board, int board_size);
 #endif
  
  	
